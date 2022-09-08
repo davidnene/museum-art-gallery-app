@@ -1,17 +1,24 @@
-## Museum Art Gallery App
+## **Museum Art Gallery App**
+### **About**
 
-## Date published
+### **Date published**
 
-## User Journey
 
-## MVP
+### **User Journey**
 
-## Artworks API
+
+### **MVP**
+
+
+### **Artworks API**
 API link: https://api.artic.edu/api/v1/artworks
+
 API docs: https://api.artic.edu/docs/#quick-start
 
-## Author
+
+### **Author**
 David Nene
+
 Software Engineer
 
 
