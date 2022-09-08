@@ -10,7 +10,7 @@ arts_hash = JSON.parse(response)
 
 
 arts_data = arts_hash['data']
-#['have_not_been_viewed_much'], ['alt_text']
+
 arts_data.each do |art|
     art_thumbnail = if art['thumbnail'] != nil
         art.fetch('thumbnail').fetch('alt_text')
