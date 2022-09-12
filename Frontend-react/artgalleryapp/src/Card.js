@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd}) {
+function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setArts, arts}) {
     const [ratingInput, setRatingInput] = useState(0)
     const [commentInput, setCommentInput] = useState('')
     const [rated, setRated] = useState(false)
@@ -20,9 +20,20 @@ function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd}) {
         comment: commentInput,
         art_id: id
     }
+
+    const appendRating = (arts) => {
+        const artsUpdated = [...arts]
+        for(let art of artsUpdated) {
+            if (art.id === id) {
+                art.ratings.concat(data)
+            }
+        }
+        return artsUpdated
+    }
+
+
     function handleRatingSubmit(e) {
         e.preventDefault()
-        /*
         fetch('http://localhost:9292/ratings', {
             method: 'POST',
             headers:{
@@ -31,14 +42,15 @@ function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd}) {
             body : JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(art => console.log('success', art))
-        */
+        .then(rating => console.log('success', rating))
+        setArts(appendRating(arts))
         console.log(commentInput)
         console.log(ratingInput)
         console.log(data)
         setCommentInput('')
         setRatingInput(0)
         setRated(true)
+        
     }
 
 
