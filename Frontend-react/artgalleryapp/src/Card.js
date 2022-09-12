@@ -1,32 +1,62 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
-function Card({ title, image, altText, artistTitle, dateStart, dateEnd }) {
+function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd}) {
     const [ratingInput, setRatingInput] = useState(0)
+    const [commentInput, setCommentInput] = useState('')
+    const [rated, setRated] = useState(false)
 
-    function handleOnChange(e) {
+    function handleOnChangeRating(e) {
         setRatingInput(e.target.value)
     };
-    const btn = "btn btn-success"
+
+    function handleOnChangeComment(e) {
+        setCommentInput(e.target.value)
+    }
+    const btn = rated? "btn btn-success": "btn btn-warning"
+
+    const data = {
+        art_rating: ratingInput,
+        comment: commentInput,
+        art_id: id
+    }
     function handleRatingSubmit(e) {
         e.preventDefault()
-        e.target.reset()
+        /*
+        fetch('http://localhost:9292/ratings', {
+            method: 'POST',
+            headers:{
+                'content-Type':'application/json',
+            },
+            body : JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(art => console.log('success', art))
+        */
+        console.log(commentInput)
+        console.log(ratingInput)
+        console.log(data)
+        setCommentInput('')
         setRatingInput(0)
+        setRated(true)
     }
+
 
     return (
         <div className='col-4'>
-            <div className="card gx-1" style={{width: 23 + "rem", height: 32 + "rem"}}>
+            <div className="card gx-1" style={{width: 23 + "rem", height: 35 + "rem"}}>
                 <img style={{height: 220 + "px",width:220 + "px"}} src={image} className="card-img-top" alt={altText} title={altText}/>
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
-                    <p className="card-text">Artist: {artistTitle}</p>
-                    <p className="card-text">Date started: {dateStart} Date ended: {dateEnd}</p>
-                    <p className="card-text">Rating {ratingInput}</p>
+                    <p className="card-text"><b>Artist :</b> {artistTitle}</p>
+                    <p className="card-text"> <b>Date started :</b> {dateStart} <b>Date ended : </b>{dateEnd}</p>
+                    <p className="card-text"><b>Rating :</b> {ratingInput}</p>
                     <form onSubmit={handleRatingSubmit}>
-                    <input onChange={handleOnChange} type="range" class="form-range" min="0" max="10" step="2" id="customRange3" value={ratingInput}></input>
-                    <input class="form-control" type="text" placeholder="Add comment here" aria-label="default input example" required></input><br/>
-                    <button type = "submit" className= {btn} >Add rating</button>
+                    <input onChange={handleOnChangeRating} type="range" className ="form-range" min="0" max="10" step="2" id="customRange3" value={ratingInput}></input>
+                    <input onChange={handleOnChangeComment} className ="form-control" type="text" placeholder="Add comment here" aria-label="default input example" required value={commentInput}></input><br/>
+                    <button type = "submit" className= {btn} >{rated? "Rated!":"Rate this art"}</button>
                     </form>
+                    <Link exact="true" to={`/${id}`} >View Ratings</Link> 
                 </div>
             </div>
         </div>
