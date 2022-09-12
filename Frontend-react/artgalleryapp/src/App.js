@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState, useEffect} from 'react';
+import Card from './Card';
 
 function App() {
+  const [arts, setArts] = useState([])
+
+  function handleArts() {
+    fetch('http://localhost:9292/arts')
+    .then(res => res.json())
+    .then(data => setArts(data))
+  };
+
+  useEffect(handleArts, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <div className='container'>
+    <div className='row'>
+      {arts.map(art => (
+        <Card key = {art.id} title = {art.title} image = {art.img_url} altText = {art.alt_text} artistTitle = {art.artist_title} dateStart = {art.date_start} dateEnd = {art.date_end} ></Card> ))}
     </div>
-  );
-}
+  </div>
+  )
+};
 
 export default App;
