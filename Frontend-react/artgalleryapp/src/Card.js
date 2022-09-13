@@ -42,12 +42,13 @@ function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setA
             body : JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(rating => console.log('success', rating))
+        .then(rating => {console.log('success', rating)
+            setRefresh(rating)})
         setArts(appendRating(arts))
-        setRefresh(()=> refresh += 1)
         setCommentInput('')
         setRatingInput(0)
         setRated(true)
+
         
     }
 

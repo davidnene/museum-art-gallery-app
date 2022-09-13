@@ -12,7 +12,8 @@ function App() {
   function handleArts() {
     fetch('https://museum-art-gallery-app.herokuapp.com/arts')
     .then(res => res.json())
-    .then(data => setArts(data)
+    .then(data => {setArts(data)
+    }
     )
   };
 
