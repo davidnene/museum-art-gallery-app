@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setArts, arts}) {
+function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setArts, arts, refresh, setRefresh}) {
     const [ratingInput, setRatingInput] = useState(0)
     const [commentInput, setCommentInput] = useState('')
     const [rated, setRated] = useState(false)
@@ -27,8 +27,8 @@ function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setA
             if (art.id === id) {
                 art.ratings.concat(data)
             }
+            return artsUpdated
         }
-        return artsUpdated
     }
 
 
@@ -44,6 +44,7 @@ function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setA
         .then(res => res.json())
         .then(rating => console.log('success', rating))
         setArts(appendRating(arts))
+        setRefresh(()=> refresh += 1)
         setCommentInput('')
         setRatingInput(0)
         setRated(true)
