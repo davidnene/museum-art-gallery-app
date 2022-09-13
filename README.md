@@ -12,14 +12,18 @@ A user can be able to give a rating for each artwork and also leave a comment.
 The ratings are then posted to the database and automatically reflect on the web app.
 
 ### **Live link**
+https://museum-art-gallery-app.netlify.app/
 
 ### **Technologies used**
 #### **Backend**
-The backend server was developed with Ruby using Active Record
+The backend server was developed with Ruby using Active Record and deployed on [Heroku](https://dashboard.heroku.com/)
+
+ Live API link: https://museum-art-gallery-app.herokuapp.com/arts
 
 #### **Frontend**
 The frontend design was developed with React js utilizing the capabilities of
 states, props, and hooks.
+The frontend was deployed on [Netlify](https://netlify.com/)
 
 ### **Date published**
 13/Sept/2022
