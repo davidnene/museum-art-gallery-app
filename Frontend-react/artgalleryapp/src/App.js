@@ -25,9 +25,9 @@ function App() {
         <DisplayRatings arts = {arts}/>
   </Route>
   <Route exact path={'/'}>
-    <Header/>
-  <div className='container'>
-    <div className='row'>
+    <Header/><br/>
+  <div className='container img-center'>
+    <div className='row row-cols-auto'>
       {arts.map(art => (
         <Card key = {art.id} id = {art.id} title = {art.title} image = {art.img_url} altText = {art.alt_text} artistTitle = {art.artist_title} dateStart = {art.date_start} dateEnd = {art.date_end} setArts = {setArts} arts = {arts} setRefresh = {setRefresh} refresh = {refresh}></Card> ))}
     </div>
