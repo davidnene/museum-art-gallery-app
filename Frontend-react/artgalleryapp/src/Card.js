@@ -44,9 +44,6 @@ function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setA
         .then(res => res.json())
         .then(rating => console.log('success', rating))
         setArts(appendRating(arts))
-        console.log(commentInput)
-        console.log(ratingInput)
-        console.log(data)
         setCommentInput('')
         setRatingInput(0)
         setRated(true)
@@ -56,11 +53,13 @@ function Card({ id, title, image, altText, artistTitle, dateStart, dateEnd, setA
 
     return (
         <div className='col-4'>
-            <div className="card gx-1" style={{width: 23 + "rem", height: 35 + "rem"}}>
+            <div className="card gx-1" style={{width: 23 + "rem", height: 37 + "rem"}}>
                 <img style={{height: 220 + "px",width:220 + "px"}} src={image} className="card-img-top" alt={altText} title={altText}/>
                 <div className="card-body">
-                    <h5 className="card-title">{title}</h5>
-                    <p className="card-text"><b>Artist :</b> {artistTitle}</p>
+                    <h5 className="card-title">{title}</h5><br/>
+                    <figcaption className="blockquote-footer">
+                       <b>Artist:</b> <cite title="Source Title"><b>{artistTitle}</b></cite>
+                    </figcaption>
                     <p className="card-text"> <b>Date started :</b> {dateStart} <b>Date ended : </b>{dateEnd}</p>
                     <p className="card-text"><b>Rating :</b> {ratingInput}</p>
                     <form onSubmit={handleRatingSubmit}>

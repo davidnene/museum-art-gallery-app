@@ -2,7 +2,8 @@ import './App.css';
 import {useState, useEffect} from 'react';
 import Card from './Card';
 import DisplayRatings from './DisplayRatings';
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom';
+import Header from './Header';
 
 function App() {
   const [arts, setArts] = useState([])
@@ -22,6 +23,7 @@ function App() {
         <DisplayRatings arts = {arts}/>
   </Route>
   <Route exact path={'/'}>
+    <Header/>
   <div className='container'>
     <div className='row'>
       {arts.map(art => (

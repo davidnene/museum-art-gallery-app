@@ -5,12 +5,11 @@ import { useParams, useHistory } from "react-router-dom";
 function DisplayRatings({ arts }) {
     const params = useParams()
     const history = useHistory()
-
     const id = params.id - 418
 
     function handleClickBack() {
         history.push('/')
-    }
+    };
 
     return (
         <div className="card gx-1" style={{width: 30 + "rem", position:"absolute", right:"450px"}}>
